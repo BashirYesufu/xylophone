@@ -6,10 +6,23 @@ void main() => runApp(const XylophoneApp());
 class XylophoneApp extends StatelessWidget {
   const XylophoneApp({Key? key}) : super(key: key);
 
-
   void playSound(int noteNumber) {
     AudioCache player = AudioCache();
     player.play('note$noteNumber.wav');
+  }
+
+  Expanded buildKey({required int soundNumber, required Color fillColor}) {
+    return Expanded(
+      child: TextButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(fillColor),
+        ),
+        onPressed: () {
+          playSound(soundNumber);
+        },
+        child: Container(),
+      ),
+    );
   }
 
   @override
@@ -21,90 +34,13 @@ class XylophoneApp extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-
-              Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.red),
-                  ),
-                  onPressed: () {
-                    playSound(1);
-                  },
-                  child: Container(),
-                ),
-              ),
-
-              Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.orange),
-                  ),
-                  onPressed: () {
-                    playSound(2);
-                  },
-                  child: Container(),
-                ),
-              ),
-
-              Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.yellow),
-                  ),
-                  onPressed: () {
-                    playSound(3);
-                  },
-                  child: Container(),
-                ),
-              ),
-
-              Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.green),
-                  ),
-                  onPressed: () {
-                    playSound(4);
-                  },
-                  child: Container(),
-                ),
-              ),
-
-              Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.teal),
-                  ),
-                  onPressed: () {
-                    playSound(5);
-                  },
-                  child: Container(),
-                ),
-              ),
-
-              Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.blue ),
-                  ),
-                  onPressed: () {
-                    playSound(6);
-                  },
-                  child: Container(),
-                ),
-              ),
-
-              Expanded(
-                child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.purple ),
-                  ),
-                  onPressed: () {
-                    playSound(7);
-                  },
-                  child: Container(),
-                ),
-              ),
+              buildKey(soundNumber: 1, fillColor: Colors.red),
+              buildKey(soundNumber: 2, fillColor: Colors.orange),
+              buildKey(soundNumber: 3, fillColor: Colors.yellow),
+              buildKey(soundNumber: 4, fillColor: Colors.green),
+              buildKey(soundNumber: 5, fillColor: Colors.teal),
+              buildKey(soundNumber: 6, fillColor: Colors.blue),
+              buildKey(soundNumber: 7, fillColor: Colors.purple),
             ],
           ),
         ),
